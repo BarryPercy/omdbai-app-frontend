@@ -1,6 +1,7 @@
 import React from "react";
 import { Container,Button } from "react-bootstrap";
 import "./styles.css";
+import SearchBar from "../../components/SearchBar";
 
 const Home = () => {
     const getAPI = async ()=>{
@@ -19,6 +20,7 @@ const Home = () => {
         <Container fluid="sm">
             <h1 className="blog-main-title">OMDb</h1>
             <Button variant="primary" onClick={getAPI}>Get Movie</Button>
+            <SearchBar/>
         </Container>
     );
 };
