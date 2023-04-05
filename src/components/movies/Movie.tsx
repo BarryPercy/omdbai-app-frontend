@@ -1,23 +1,31 @@
-import { Card} from "react-bootstrap"
+import { Card, Col } from "react-bootstrap"
 import "./styles.css";
+import { useAppDispatch } from '../../redux/hooks';
+import { getMovie } from "../../redux/actions";
+import { Link } from "react-router-dom"
+import { SearchMovie } from "../../redux/interfaces";
 
-interface SearchMovie{
-    Poster:string,
-    Title:string,
-    Type: string,
-    Year: string,
-    imdbID: string,
-}
 interface Props {
     movie: SearchMovie
 }
 
 const Movie = ({movie}:Props)=>{
-    const {Poster} = movie;
+    const handleClick = () =>{
+        dispatch(getMovie(imdbID))
+    }
+    const dispatch = useAppDispatch();
+    const {Poster, imdbID} = movie;
     return(
-        <Card className = "movie-card mb-4">
-            <Card.Img variant="top" src={Poster} />
-        </Card>
+        <>
+            {Poster!=="N/A"?
+            <Col  xs={6} sm={4} md={3} lg={2} >
+                <Link to={"/"+imdbID}>
+                    <Card className = "movie-card mb-4" onClick={handleClick}>
+                    <Card.Img variant="top" src={Poster} />
+                </Card>
+            </Link>
+            </Col>:""}
+        </>
     )
 }
 

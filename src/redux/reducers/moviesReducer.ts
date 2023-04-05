@@ -1,12 +1,6 @@
-interface SearchMovie{
-    Poster:string,
-    Title:string,
-    Type: string,
-    Year: string,
-    imdbID: string,
-}
+import { SearchMovie, SelectedMovie} from "../../redux/interfaces";
   
-interface SearchResults {
+interface searchResults {
     type: 'SET_SEARCH_RESULTS';
     payload: SearchMovie[];
 }
@@ -20,26 +14,32 @@ interface emptySearch {
     payload: SearchMovie[];
 }
   
-type Action = SearchResults | getMovie | emptySearch
+type Action = searchResults | getMovie | emptySearch
 
-const initialState = {
+interface MovieState {
+    movieList: SearchMovie[];
+    selectedMovie: SelectedMovie | undefined;
+  }
+
+const initialState: MovieState = {
     movieList: [],
-    clickedMovie:"",
+    selectedMovie:undefined,
 }
 
 
 const moviesReducer = (state = initialState, action: Action) => {
     switch (action.type) {
         case 'SET_SEARCH_RESULTS':
-            console.log(action.payload)
+            
             return {
                 ...state,
                 movieList: action.payload, 
             }
         case 'GET_MOVIE':  
+            console.log("GET MOVIE!",action.payload)
             return {
                 ...state,
-                clickedMovie:action.payload
+                selectedMovie:action.payload
             }
         case 'EMPTY_SEARCH':  
             return {

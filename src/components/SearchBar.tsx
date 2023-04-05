@@ -9,6 +9,7 @@ const SearchBar = ()=>{
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) =>{
         event.preventDefault();
         dispatch(search(searchValue))
+        setSearchValue("")
     }
     return(
         <Form onSubmit={handleSubmit}>
