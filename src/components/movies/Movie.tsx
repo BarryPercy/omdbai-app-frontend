@@ -23,7 +23,7 @@ const Movie = ({movie}:Props)=>{
                     <Card className = "movie-card mb-4" onClick={handleClick}>
                     <Card.Img variant="top" src={Poster} />
                     <Card.Body>
-                        <p>{Title}</p>
+                        <p>{Title} {Year}</p>
                     </Card.Body>
                 </Card>
             </Link>
