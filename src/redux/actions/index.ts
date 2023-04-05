@@ -6,7 +6,7 @@ export const EMPTY_SEARCH = "EMPTY_SEARCH";
 
 export const getMovie = (imdbID: string): AppThunk => async (dispatch) => {
   try {
-    const response = await fetch(process.env.REACT_APP_BACKEND + '/movies/' + imdbID);
+    const response = await fetch(`${process.env.REACT_APP_BACKEND}/movies/'${imdbID}`);
     if (response.ok) {
       const results = await response.json();
       dispatch({
@@ -21,7 +21,7 @@ export const getMovie = (imdbID: string): AppThunk => async (dispatch) => {
 
 export const search = (title: string): AppThunk => async (dispatch) => {
   try {
-    const response = await fetch(process.env.REACT_APP_BACKEND + '/search/' + title);
+    const response = await fetch(`${process.env.REACT_APP_BACKEND}/search/${title}`);
     if (response.ok) {
       const results = await response.json();
       dispatch({
