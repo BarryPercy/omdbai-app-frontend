@@ -1,19 +1,26 @@
-enum ActionTypes {
-    A = 'SET_SEARCH_RESULTS',
-    B = 'GET_MOVIE',
-  }
-  
-interface IActionA {
-    type: ActionTypes.A;
-    payload: string;
+interface SearchMovie{
+    Poster:string,
+    Title:string,
+    Type: string,
+    Year: string,
+    imdbID: string,
 }
   
-interface IActionB {
-    type: ActionTypes.B;
-    payload: string;
+interface SearchResults {
+    type: 'SET_SEARCH_RESULTS';
+    payload: SearchMovie[];
 }
   
-type IAction = IActionA | IActionB
+interface getMovie {
+    type: 'GET_MOVIE';
+    payload: string;
+}
+interface emptySearch {
+    type: 'EMPTY_SEARCH';
+    payload: SearchMovie[];
+}
+  
+type Action = SearchResults | getMovie | emptySearch
 
 const initialState = {
     movieList: [],
@@ -21,18 +28,23 @@ const initialState = {
 }
 
 
-const moviesReducer = (state = initialState, action: IAction) => {
+const moviesReducer = (state = initialState, action: Action) => {
     switch (action.type) {
         case 'SET_SEARCH_RESULTS':
+            console.log(action.payload)
             return {
                 ...state,
-                songsSearched:true,
-                songList: action.payload, 
+                movieList: action.payload, 
             }
         case 'GET_MOVIE':  
             return {
                 ...state,
                 clickedMovie:action.payload
+            }
+        case 'EMPTY_SEARCH':  
+            return {
+                ...state,
+                movieList:action.payload
             }
         default:
             return state
