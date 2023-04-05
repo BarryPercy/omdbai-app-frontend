@@ -21,7 +21,7 @@ const MovieDetails = () => {
                 <Col lg={3}>
                     <Image src={selectedMovie?.poster}></Image>
                 </Col>
-                <Col lg={9}>
+                <Col lg={9} className="text-white">
                     <p><strong>Title:</strong> {selectedMovie?.title}</p>
                     <p><strong>Year:</strong> {selectedMovie?.year}</p>
                     <p><strong>Plot:</strong> {selectedMovie?.plot}</p>

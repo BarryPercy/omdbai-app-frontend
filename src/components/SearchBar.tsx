@@ -12,7 +12,7 @@ const SearchBar = ()=>{
         setSearchValue("")
     }
     return(
-        <Form onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit} className="mt-5">
             <InputGroup className="mb-3">
                 <Form.Control
                     placeholder="Search"
