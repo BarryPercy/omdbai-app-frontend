@@ -1,5 +1,6 @@
 .movie-card {
     transition: transform 0.2s ease-in-out;
+    height:400px;
 }
   
 .movie-card:hover {
@@ -22,4 +23,9 @@
 .movie-details-row{
     border:solid;
     padding: 50px;
+}
+
+.no-decoration{
+    text-decoration: none;
+    color:inherit
 }

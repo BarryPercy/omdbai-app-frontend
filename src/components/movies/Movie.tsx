@@ -19,14 +19,14 @@ const Movie = ({movie}:Props)=>{
         <>
             {Poster!=="N/A"?
             <Col  xs={6} sm={4} md={3} lg={2} >
-                <Link to={"/"+imdbID}>
+                <Link to={"/"+imdbID}  className="no-decoration">
                     <Card className = "movie-card mb-4" onClick={handleClick}>
-                    <Card.Img variant="top" src={Poster} />
-                    <Card.Body>
-                        <p>{Title} {Year}</p>
-                    </Card.Body>
-                </Card>
-            </Link>
+                        <Card.Img variant="top" src={Poster} />
+                        <Card.Body>
+                            <p>{Title} {Year}</p>
+                        </Card.Body>
+                    </Card>
+                </Link>
             </Col>:""}
         </>
     )
