@@ -18,7 +18,7 @@ const Movie = ({movie}:Props)=>{
     return(
         <>
             {Poster!=="N/A"?
-            <Col  xs={6} sm={4} md={3} lg={2} >
+            <Col  xs={6} sm={3} md={3} lg={2} >
                 <Link to={"/"+imdbID}  className="no-decoration">
                     <Card className = "movie-card mb-4" onClick={handleClick}>
                         <Card.Img variant="top" src={Poster} />

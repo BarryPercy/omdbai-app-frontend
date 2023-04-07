@@ -1,6 +1,6 @@
 import { Container,Button } from "react-bootstrap";
 import "./styles.css";
-import SearchBar from "../../components/SearchBar";
+import SearchBar from "../../components/search/SearchBar";
 import Movies from "../../components/movies/Movies";
 import { useEffect } from "react"
 import { emptySearch } from "../../redux/actions";
