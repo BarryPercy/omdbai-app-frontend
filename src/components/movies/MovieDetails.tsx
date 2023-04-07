@@ -16,15 +16,19 @@ const MovieDetails = () => {
         dispatch(getMovie(imdbID))
     },[imdbID])
     return(
-        <Container className="movie-details">
+        <Container fluid className="movie-details">
             <Row className="align-items-center justify-content-center movie-details-row">
-                <Col lg={3}>
-                    <Image src={selectedMovie?.poster}></Image>
+                <Col sm={12} lg={6} className="mb-4 d-flex justify-content-center">
+                    <Image fluid src={selectedMovie?.poster} />
                 </Col>
-                <Col lg={9} className="text-white">
-                    <p><strong>Title:</strong> {selectedMovie?.title}</p>
-                    <p><strong>Year:</strong> {selectedMovie?.year}</p>
-                    <p><strong>Plot:</strong> {selectedMovie?.plot}</p>
+                <Col lg={6} className="details">
+                    <h1>{selectedMovie?.title}</h1>
+                    <p>
+                        <strong>Year:</strong> {selectedMovie?.year}
+                    </p>
+                    <p>
+                        <strong>Plot:</strong> {selectedMovie?.plot}
+                    </p>
                 </Col>
             </Row>
         </Container>

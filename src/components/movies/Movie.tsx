@@ -6,10 +6,10 @@ import { Link } from "react-router-dom"
 import { SearchMovie } from "../../redux/interfaces";
 
 interface Props {
-    movie: SearchMovie
+    movie: SearchMovie,
 }
 
-const Movie = ({movie}:Props)=>{
+const Movie = ({movie}: Props)=>{
     const handleClick = () =>{
         dispatch(getMovie(imdbID))
     }
@@ -18,11 +18,11 @@ const Movie = ({movie}:Props)=>{
     return(
         <>
             {Poster!=="N/A"?
-            <Col  xs={6} sm={3} md={3} lg={2} >
-                <Link to={"/"+imdbID}  className="no-decoration">
-                    <Card className = "movie-card mb-4" onClick={handleClick}>
+            <Col xs={6} sm={4} md={3} lg={2}>
+                <Link to={"/"+imdbID} className="no-decoration">
+                    <Card className="movie-card mb-4" onClick={handleClick}>
                         <Card.Img variant="top" src={Poster} />
-                        <Card.Body>
+                        <Card.Body >
                             <p>{Title} {Year}</p>
                         </Card.Body>
                     </Card>
