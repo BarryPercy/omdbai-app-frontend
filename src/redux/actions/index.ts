@@ -29,7 +29,7 @@ export const setMovie = (imdbID: string): AppThunk => async (dispatch) => { //ta
       }    
     }
   } catch (error) {
-    console.log(error);
+    console.log("hey")
   }
 };
 
@@ -62,7 +62,10 @@ export const search = (title: string): AppThunk => async (dispatch) => { //takes
       } 
     }
   } catch (error) {
-    console.log(error);
+    dispatch({
+      type: SET_ERROR,
+      payload: "Unable to perform search.",
+    });
   }
 };
 // Tested around with emptying the results on refresh but settled with keeping results being better.

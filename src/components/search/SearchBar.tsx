@@ -50,7 +50,7 @@ const SearchBar = () => {
         </InputGroup> 
         </Form>
         {error!==""&&error!==undefined?<Row className="justify-content-center">
-            <Col xs={8} sm={6} md={4}>
+            <Col xs={12} sm={7} md={4} lg={3}>
                 <Alert variant="danger" className="alert d-flex justify-content-center align-items-center">
                     {error}
                 </Alert>

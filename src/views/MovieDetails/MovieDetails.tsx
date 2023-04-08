@@ -1,8 +1,8 @@
-import { Col, Container, Row, Image, Button, Spinner } from "react-bootstrap"
+import { Col, Container, Row, Image, Button, Spinner, Alert } from "react-bootstrap"
 import { useAppDispatch, useAppSelector } from "../../redux/hooks"
 import { Link, useParams} from 'react-router-dom'
 import { useEffect, useState } from "react"
-import { setMovie } from "../../redux/actions"
+import { setMovie, SET_MOVIE } from "../../redux/actions"
 import { RootState } from "../../redux/interfaces"
 import "./styles.css";
 
@@ -15,6 +15,10 @@ const MovieDetails = () => {
     let badId = useAppSelector((state: RootState) => state.movies.badId); //gets the selected movie from the state.
     useEffect(()=>{ //imdb is in the dependency array so whenever it changes it sets the movie based on the id in the parameter
         setIsLoading(true);
+        dispatch({
+            type:SET_MOVIE,
+            payload:undefined,
+        })
         dispatch(setMovie(imdbID))
         setTimeout(()=>{
             setIsLoading(false);
@@ -33,7 +37,7 @@ const MovieDetails = () => {
                     <h1>No such Id exists, check the id in your URL</h1>
                 </Row>
                 :
-                <Row className="align-items-center justify-content-center movie-details-row">
+                (selectedMovie?<Row className="align-items-center justify-content-center movie-details-row">
                     <Col sm={12} lg={4} className="mb-4 d-flex justify-content-center">
                         <Image fluid src={selectedMovie?.poster} />
                     </Col>
@@ -46,7 +50,11 @@ const MovieDetails = () => {
                             <strong>Plot:</strong> {selectedMovie?.plot}
                         </p>
                     </Col>
-                </Row>
+                </Row>:
+                    <Alert variant="danger" className="alert d-flex justify-content-center align-items-center">
+                        Check your Network Connection
+                    </Alert>
+                )
             )}
 
         </Container>
