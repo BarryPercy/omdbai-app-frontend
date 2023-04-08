@@ -1,8 +1,8 @@
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from './views/Home/Home';
-import MovieDetails from './components/movies/MovieDetails';
-import TopBar from './components/TopBar';
+import MovieDetails from './views/MovieDetails/MovieDetails';
+import TopBar from './components/TopBar/TopBar';
 
 function App() {
   return (

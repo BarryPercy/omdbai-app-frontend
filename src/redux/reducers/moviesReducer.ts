@@ -1,51 +1,36 @@
-import { SearchMovie, SelectedMovie} from "../../redux/interfaces";
+import { MovieState, searchResults, setMovie, setError} from "../../redux/interfaces";
   
-interface searchResults {
-    type: 'SET_SEARCH_RESULTS';
-    payload: SearchMovie[];
-}
-  
-interface getMovie {
-    type: 'GET_MOVIE';
-    payload: string;
-}
-interface emptySearch {
-    type: 'EMPTY_SEARCH';
-    payload: SearchMovie[];
-}
-  
-type Action = searchResults | getMovie | emptySearch
-
-interface MovieState {
-    movieList: SearchMovie[];
-    selectedMovie: SelectedMovie | undefined;
-  }
+type Action = searchResults | setMovie | setError //action type can only have the type of the actions set in our interface folder.
 
 const initialState: MovieState = {
     movieList: [],
     selectedMovie:undefined,
+    error:"",
 }
 
 
 const moviesReducer = (state = initialState, action: Action) => {
     switch (action.type) {
         case 'SET_SEARCH_RESULTS':
-            
             return {
                 ...state,
                 movieList: action.payload, 
             }
-        case 'GET_MOVIE':  
-            console.log("GET MOVIE!",action.payload)
+        case 'SET_MOVIE':  
             return {
                 ...state,
                 selectedMovie:action.payload
             }
-        case 'EMPTY_SEARCH':  
+        case 'SET_ERROR':  
             return {
                 ...state,
-                movieList:action.payload
+                error:action.payload
             }
+        // case 'EMPTY_SEARCH':  //no longer using
+        //     return {
+        //         ...state,
+        //         movieList:action.payload
+        //     }
         default:
             return state
     }

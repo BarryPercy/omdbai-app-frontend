@@ -1,46 +1,65 @@
-import { AppThunk } from '../../types';
+import { AppThunk } from '../../types'; //needed correct typing for running actions with dispatch
 
-export const GET_MOVIE = "GET_MOVIE";
+export const SET_MOVIE = "SET_MOVIE";
 export const SET_SEARCH_RESULTS = "SET_SEARCH_RESULTS";
 export const EMPTY_SEARCH = "EMPTY_SEARCH";
+export const SET_ERROR = "SET_ERROR";
 
-export const getMovie = (imdbID: string): AppThunk => async (dispatch) => {
+export const setMovie = (imdbID: string): AppThunk => async (dispatch) => { //takes a string from the url of movie details and sends a fetch for the movie with that id
   try {
     const response = await fetch(`${process.env.REACT_APP_BACKEND}/movies/${imdbID}`);
     if (response.ok) {
       const results = await response.json();
       dispatch({
-        type: GET_MOVIE,
+        type: SET_MOVIE,
         payload: results,
       });
     }
   } catch (error) {
-    dispatch({ type: 'SEARCH_ERROR', payload: error });
+    console.log(error);
   }
 };
 
-export const search = (title: string): AppThunk => async (dispatch) => {
-  try {
+export const search = (title: string): AppThunk => async (dispatch) => { //takes a term and tries to search, if the response is 429 it means they've sent too many requests, 
+  try {                                                                  //if it gets a response of false then there's no results, otherwise it sends the results to the reducer
     const response = await fetch(`${process.env.REACT_APP_BACKEND}/search/${title}`);
+    if(response.status === 429){
+      dispatch({
+        type: SET_ERROR,
+        payload:"Too many requests, please slow down.",
+      })
+    }
     if (response.ok) {
       const results = await response.json();
-      dispatch({
-        type: SET_SEARCH_RESULTS,
-        payload: results.Search,
-      });
+      console.log(results.Response)
+      if(results.Response==="False"){
+        dispatch({
+          type: SET_ERROR,
+          payload:"No Results.",
+        })
+      }else{
+        dispatch({
+          type: SET_SEARCH_RESULTS,
+          payload: results.Search,
+        });
+        dispatch({
+          type: SET_ERROR,
+          payload:"",
+        })
+      } 
     }
   } catch (error) {
-    dispatch({ type: 'SEARCH_ERROR', payload: error });
+    console.log(error);
   }
 };
-
-export const emptySearch = (): AppThunk => async (dispatch) => {
-    try {
-        dispatch({
-          type: EMPTY_SEARCH,
-          payload: []
-        });
-    } catch (error) {
-      dispatch({ type: 'SEARCH_ERROR', payload: error });
-    }
-  };
+// Tested around with emptying the results on refresh but settled with keeping results being better.
+// export const emptySearch = (): AppThunk => async (dispatch) => {
+//     try {
+//         dispatch({
+//           type: EMPTY_SEARCH,
+//           payload: []
+//         });
+//     } catch (error) {
+//       dispatch({ type: 'SEARCH_ERROR', payload: error });
+//     }
+// };

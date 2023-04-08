@@ -1,19 +1,18 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
-import { encryptTransform } from 'redux-persist-transform-encrypt'
 import storage from 'redux-persist/lib/storage'
 import { persistStore, persistReducer } from 'redux-persist'
 import moviesReducer from '../reducers/moviesReducer'
 
-const persistConfig = {
+const persistConfig = { 
     storage: storage,
     key: 'root',
   }
 
-const combinedReducer = combineReducers({
+const combinedReducer = combineReducers({ //keeping as combineReducers so that if we scale the project they can be easily added here
     movies: moviesReducer,
 })
 
-const persistedReducer = persistReducer(persistConfig, combinedReducer)
+const persistedReducer = persistReducer(persistConfig, combinedReducer) //so that storage persists
 
 const store = configureStore({
     reducer: persistedReducer,
@@ -28,5 +27,5 @@ const store = configureStore({
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
   
-  export { store, persistedStore }
+export { store, persistedStore }
   
