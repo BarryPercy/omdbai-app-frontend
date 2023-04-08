@@ -11,7 +11,8 @@ const MovieDetails = () => {
     const dispatch = useAppDispatch();
     let {imdbID = ""} = useParams<{ imdbID?: string }>() //gets the id from the URL  
     const [isLoading, setIsLoading] = useState(true)
-    let selectedMovie = useAppSelector((state: RootState) => state.movies.selectedMovie); //gets the selected movie from the state.
+    let selectedMovie = useAppSelector((state: RootState) => state.movies.selectedMovie);
+    let badId = useAppSelector((state: RootState) => state.movies.badId); //gets the selected movie from the state.
     useEffect(()=>{ //imdb is in the dependency array so whenever it changes it sets the movie based on the id in the parameter
         setIsLoading(true);
         dispatch(setMovie(imdbID))
@@ -27,6 +28,11 @@ const MovieDetails = () => {
                     <Spinner animation="border" variant="primary" />
                 </Row>
             ):(
+                badId?
+                <Row className="text-center text-white">
+                    <h1>No such Id exists, check the id in your URL</h1>
+                </Row>
+                :
                 <Row className="align-items-center justify-content-center movie-details-row">
                     <Col sm={12} lg={4} className="mb-4 d-flex justify-content-center">
                         <Image fluid src={selectedMovie?.poster} />

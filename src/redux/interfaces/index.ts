@@ -23,6 +23,7 @@ export interface MovieState {
     movieList: SearchMovie[];
     selectedMovie: SelectedMovie | undefined;
     error: string;
+    badId:boolean
 }
 
 export interface searchResults {
@@ -38,6 +39,11 @@ export interface setMovie {
 export interface setError {
     type: 'SET_ERROR';
     payload: string;
+}
+
+export interface badId {
+    type: 'BAD_ID';
+    payload: boolean;
 }
 // export interface emptySearch {
 //     type: 'EMPTY_SEARCH';

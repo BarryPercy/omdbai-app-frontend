@@ -4,16 +4,29 @@ export const SET_MOVIE = "SET_MOVIE";
 export const SET_SEARCH_RESULTS = "SET_SEARCH_RESULTS";
 export const EMPTY_SEARCH = "EMPTY_SEARCH";
 export const SET_ERROR = "SET_ERROR";
+export const BAD_ID = "BAD_ID";
 
 export const setMovie = (imdbID: string): AppThunk => async (dispatch) => { //takes a string from the url of movie details and sends a fetch for the movie with that id
   try {
     const response = await fetch(`${process.env.REACT_APP_BACKEND}/movies/${imdbID}`);
     if (response.ok) {
       const results = await response.json();
-      dispatch({
-        type: SET_MOVIE,
-        payload: results,
-      });
+      console.log(results)
+      if(results.Response==="True"){
+        dispatch({
+          type: SET_MOVIE,
+          payload: results,
+        });
+        dispatch({
+          type: BAD_ID,
+          payload:false,
+        })
+      }else{
+        dispatch({
+          type: BAD_ID,
+          payload:true,
+        })
+      }    
     }
   } catch (error) {
     console.log(error);
