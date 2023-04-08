@@ -32,22 +32,22 @@ const SearchBar = () => {
   return ( //Inputgroup updates the searchValue hook whenever something new is changed so when the form is submitted it submits the full search term. errors only show below when an error exists.
     <>
         <Form onSubmit={handleSubmit} className="Form mt-5">
-        <InputGroup className="mb-3 rounded-start"> 
-            <Form.Control
-            className='form-control'
-            placeholder="Search"
-            value={searchValue}
-            onChange={(e) => {
-                setSearchValue(
-                e.target.value,
-                );
-            }}
-            />
-            <Button type="submit" className="btn d-none d-md-block">
-            <HiMagnifyingGlass size={24} />
-            </Button>
-            
-        </InputGroup> 
+          <InputGroup className="mb-3 rounded-start"> 
+              <Form.Control
+              className='form-control'
+              placeholder="Search"
+              value={searchValue}
+              onChange={(e) => {
+                  setSearchValue(
+                  e.target.value,
+                  );
+              }}
+              />
+              <Button type="submit" className="btn d-none d-md-block">
+                <HiMagnifyingGlass size={24} />
+              </Button>
+              
+          </InputGroup> 
         </Form>
         {error!==""&&error!==undefined?<Row className="justify-content-center">
             <Col xs={12} sm={7} md={4} lg={3}>

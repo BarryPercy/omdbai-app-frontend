@@ -52,7 +52,7 @@ const MovieDetails = () => {
                     </Col>
                 </Row>:
                     <Alert variant="danger" className="alert d-flex justify-content-center align-items-center">
-                        Check your Network Connection
+                        Couldn't Load The Movie Details
                     </Alert>
                 )
             )}
