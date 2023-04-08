@@ -25,7 +25,7 @@ const MovieDetails = () => {
         },500)
     },[imdbID])
     return(
-        <Container fluid className="movie-details">
+        <Container className="movie-details">
             <Row className="text-left text-white"><Link to="/"><Button className="backButton">Back To Search</Button></Link></Row>
             {isLoading ? (
                 <Row className="align-items-center justify-content-center mt-5">
@@ -41,7 +41,7 @@ const MovieDetails = () => {
                     <Col sm={12} lg={4} className="mb-4 d-flex justify-content-center">
                         <Image fluid src={selectedMovie?.poster} />
                     </Col>
-                    <Col sm={12}lg={8} className="details">
+                    <Col xs={12}lg={8} className="details">
                         <h1>{selectedMovie?.title}</h1>
                         <p>
                             <strong>Year:</strong> {selectedMovie?.year}
