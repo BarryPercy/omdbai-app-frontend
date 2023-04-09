@@ -5,6 +5,7 @@ export const SET_SEARCH_RESULTS = "SET_SEARCH_RESULTS";
 export const EMPTY_SEARCH = "EMPTY_SEARCH";
 export const SET_ERROR = "SET_ERROR";
 export const BAD_ID = "BAD_ID";
+export const MOVIE_LOADING = "MOVIE_LOADING"
 
 export const setMovie = (imdbID: string): AppThunk => async (dispatch) => { //takes a string from the url of movie details and sends a fetch for the movie with that id
   try {
@@ -21,6 +22,10 @@ export const setMovie = (imdbID: string): AppThunk => async (dispatch) => { //ta
           type: BAD_ID,
           payload:false,
         })
+        dispatch({
+          type:MOVIE_LOADING,
+          payload:false,
+      })
       }else{
         dispatch({
           type: BAD_ID,
