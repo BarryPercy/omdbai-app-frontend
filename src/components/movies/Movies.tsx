@@ -9,12 +9,13 @@ const Movies = ()=>{
     let isLoading = useAppSelector((state: RootState) => state.movies.searchLoading);
     return(
         <>
-            <Row className="align-items-center justify-content-center mt-5">
             {isLoading?
-                <Spinner animation="grow" variant="secondary" />
+                <Row className="align-items-center justify-content-center mt-5">
+                    <Spinner animation="grow" variant="secondary" />
+                </Row>
                 :null
-            }
-            </Row>
+
+            } 
             <Row className = "mt-5">
                 {movieList && movieList.length>0 ? movieList.map((movie)=>{ //if the movieList is populated then it maps all the movies.
                         return(
