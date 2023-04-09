@@ -2,10 +2,8 @@
 
 - [Project summary](#project-summary)
 - [Technology implementation](#technology-implementation)
-- [Presentation materials](#presentation-materials)
-- [Additional details](#additional-details)
-- [About this template](#about-this-template)
-
+- [Project Development Roadmap](#project-development-roadmap)
+- [How to Run The Project](#how-to-run-the-project)
 
 ## Project summary
 
