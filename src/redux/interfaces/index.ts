@@ -25,8 +25,10 @@ export interface MovieState {
     error: string;
     badId:boolean;
     movieLoading:boolean;
+    searchLoading:boolean;
 }
 
+//ACTIONS
 export interface searchResults {
     type: 'SET_SEARCH_RESULTS';
     payload: SearchMovie[];
@@ -49,6 +51,11 @@ export interface badId {
 
 export interface movieLoading {
     type: 'MOVIE_LOADING';
+    payload: boolean;
+}
+
+export interface searchLoading {
+    type: 'SEARCH_LOADING';
     payload: boolean;
 }
 // export interface emptySearch {

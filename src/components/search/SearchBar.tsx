@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { search } from '../../redux/actions';
 import { HiMagnifyingGlass } from 'react-icons/hi2'
 import { RootState } from '../../redux/interfaces';
-import { SET_ERROR } from '../../redux/actions';
+import { SET_ERROR, SEARCH_LOADING } from '../../redux/actions';
 import "./styles.css";
 
 const SearchBar = () => {
@@ -19,6 +19,10 @@ const SearchBar = () => {
             payload:"Please enter a search term",
           })
     } else{
+      dispatch({
+        type: SEARCH_LOADING,
+        payload:true,
+      })
         dispatch(search(searchValue))
         setSearchValue("") //resets search value so that the search term doesn't stay there.
     } 
@@ -49,13 +53,15 @@ const SearchBar = () => {
               
           </InputGroup> 
         </Form>
-        {error!==""&&error!==undefined?<Row className="justify-content-center">
+        <Row className="justify-content-center">
+        {error!==""&&error!==undefined?
             <Col xs={12} sm={7} md={4} lg={3}>
                 <Alert variant="danger" className="alert d-flex justify-content-center align-items-center">
                     {error}
                 </Alert>
             </Col>
-        </Row>:""}
+        :""}
+        </Row>
         
     </>
   )

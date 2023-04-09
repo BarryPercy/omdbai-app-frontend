@@ -1,6 +1,6 @@
-import { MovieState, searchResults, setMovie, setError, badId, movieLoading } from "../../redux/interfaces";
+import { MovieState, searchResults, setMovie, setError, badId, movieLoading, searchLoading } from "../../redux/interfaces";
   
-type Action = searchResults | setMovie | setError | badId | movieLoading //action type can only have the type of the actions set in our interface folder.
+type Action = searchResults | setMovie | setError | badId | movieLoading | searchLoading //action type can only have the type of the actions set in our interface folder.
 
 const initialState: MovieState = {
     movieList: [],
@@ -8,6 +8,7 @@ const initialState: MovieState = {
     error:"",
     badId:false,
     movieLoading: false,
+    searchLoading: false,
 }
 
 
@@ -37,6 +38,11 @@ const moviesReducer = (state = initialState, action: Action) => {
             return{
                 ...state,
                 movieLoading:action.payload
+            }
+        case 'SEARCH_LOADING':
+            return{
+                ...state,
+                searchLoading:action.payload
             }
         // case 'EMPTY_SEARCH':  //no longer using
         //     return {
