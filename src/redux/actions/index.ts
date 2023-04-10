@@ -13,7 +13,6 @@ export const setMovie = (imdbID: string): AppThunk => async (dispatch) => { //ta
     const response = await fetch(`${process.env.REACT_APP_BACKEND}/movies/${imdbID}`);
     if (response.ok) {
       const results = await response.json();
-      console.log(results)
       if(results.Response==="True"){
         dispatch({
           type: SET_MOVIE,
@@ -35,7 +34,7 @@ export const setMovie = (imdbID: string): AppThunk => async (dispatch) => { //ta
       }    
     }
   } catch (error) {
-    console.log("hey")
+    console.log(error)
   }
 };
 
@@ -54,7 +53,6 @@ export const search = (title: string): AppThunk => async (dispatch) => { //takes
     }
     if (response.ok) {
       const results = await response.json();
-      console.log(results.Response)
       if(results.Response==="False"){
         dispatch({
           type: SET_ERROR,

@@ -12,6 +12,9 @@ export interface SelectedMovie{ //interface for movies selected (only plot added
     year: string,
     plot: string,
     imdbID: string,
+    genre: string;
+    actors: string;
+    rated: string;
 }
 
 export interface RootState {
